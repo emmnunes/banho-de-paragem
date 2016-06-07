@@ -20,7 +20,7 @@ Dir[*masks].each do |file_path|
 end
 
 # Use pretty urls `www.example.com/blog`
-activate :directory_indexes
+# activate :directory_indexes
 
 # Use middleman-livereload
 activate :livereload
@@ -28,8 +28,8 @@ activate :livereload
 # Minimize css/js and fix assets for Build
 configure :build do
   activate :autoprefixer
-  activate :minify_css
-  activate :minify_javascript
+  # activate :minify_css
+  # activate :minify_javascript
   activate :relative_assets
-  activate :asset_hash
+  # activate :asset_hash
 end

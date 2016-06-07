@@ -1,6 +1,450 @@
 @charset "utf-8";
 @import "normalize-scss/normalize";
+@import "bourbon/app/assets/stylesheets/bourbon";
+@import "neat/app/assets/stylesheets/neat";
+@import "fancybox/source/jquery.fancybox.css";
+
+@import "fancybox";
+@import "loader";
+@import "variables";
+
+body {
+  background: black;
+  color: white;
+  font-family: $primary-font;
+  padding-top: 80px;
+
+  @include breakpoint(large) {
+    padding-top: 0;
+  }
+}
 
 main {
   text-align: center;
+}
+
+.menu {
+  position: absolute;
+  background: $red;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  z-index: 8;
+
+  a {
+    color: black;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin: 0 15px;
+    font-size: rem(14);
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+}
+
+/* HOMEPAGE */
+.home {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  height: calc(100vh - 60px);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  .titulo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    @include transform(translate(-50%, -50%));
+  }
+
+  h1 {
+    margin: 0;
+    color: $red;
+    background: -webkit-linear-gradient(left, rgba($red, 0.8), rgba($red, 0.4));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-transform: uppercase;
+    font-size: rem(30);
+    font-weight: 900;
+    letter-spacing: 10px;
+    line-height: rem(50);
+
+    @include breakpoint(medium) {
+      font-size: rem(36);
+      letter-spacing: 20px;
+      line-height: 1.2;
+    }
+
+    @include breakpoint(large) {
+      font-size: rem(48);
+      span { opacity: 0; }
+    }
+
+    &.bottom {
+      background: -webkit-linear-gradient(right, $red, rgba($red, 0.1));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: none;
+
+      @include breakpoint(large) {
+        display: block;
+      }
+    }
+  }
+}
+
+/* SINOPSE */
+.sinopse {
+  z-index: 0;
+  width: 100%;
+
+  @include breakpoint(large) {
+    height: 100%;
+    height: calc(100vh - 60px);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+
+  .imagem {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+
+    @include breakpoint(large) {
+      opacity: 1;
+      width: 50%;
+      height: 100%;
+    }
+  }
+
+  .conteudo {
+    text-align: left;
+    padding: 20px 40px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    @include transform(translate(0, -50%));
+
+    @include breakpoint(large) {
+      overflow-y: auto;
+      top: 0;
+      left: 50%;
+      width: 50%;
+      height: 100%;
+      padding: 40px 60px;
+      @include transform(translate(0, 0));
+    }
+
+    h2 {
+      color: $red;
+      font-size: rem(16);
+      text-transform: uppercase;
+      letter-spacing: 10px;
+    }
+
+    p {
+      font-family: $secondary-font;
+      font-size: rem(18);
+      line-height: rem(28);
+    }
+  }
+}
+
+/* GALERIA */
+.galeria {
+  z-index: 0;
+  width: 100%;
+
+  @include breakpoint(large) {
+    height: 100%;
+    height: calc(100vh - 60px);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+
+  .imagem {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+
+    @include breakpoint(large) {
+      opacity: 1;
+      left: 50%;
+      width: 50%;
+      height: 100%;
+    }
+  }
+
+  .conteudo {
+    text-align: left;
+    padding: 20px 40px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+
+    @include breakpoint(large) {
+      overflow-y: auto;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      padding: 40px 60px;
+      @include transform(translate(0, 0));
+    }
+
+    h2 {
+      color: $red;
+      font-size: rem(16);
+      text-transform: uppercase;
+      letter-spacing: 10px;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-family: $secondary-font;
+      font-size: rem(18);
+      line-height: rem(28);
+    }
+  }
+
+  .fotos {
+    width: 100%;
+
+    img {
+      width: 100%;
+      margin-bottom: 10px;
+      float: left;
+
+      @include breakpoint(large) {
+        width: 48%;
+        margin: 0 1% 1% 0;
+      }
+      @include breakpoint(x-large) { width: 31%; }
+    }
+  }
+}
+
+/* MAKING OF */
+.making_of {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  height: calc(100vh - 60px);
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  .video {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+
+    iframe,
+    object,
+    embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+  }
+}
+
+/* CRÉDITOS */
+.creditos {
+  z-index: 0;
+  width: 100%;
+
+  @include breakpoint(large) {
+    height: 100%;
+    height: calc(100vh - 60px);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+
+  .imagem {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+
+    @include breakpoint(large) {
+      opacity: 1;
+      width: 50%;
+      height: 100%;
+    }
+  }
+
+  .conteudo {
+    text-align: center;
+    padding: 20px 40px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    @include transform(translate(0, -50%));
+
+    @include breakpoint(large) {
+      overflow-y: auto;
+      top: 0;
+      left: 50%;
+      width: 50%;
+      height: 100%;
+      padding: 40px 60px;
+      @include transform(translate(0, 0));
+    }
+
+    h2 {
+      color: $red;
+      font-size: rem(16);
+      text-transform: uppercase;
+      letter-spacing: 10px;
+    }
+    h3 {
+      margin-top: 30px;
+      margin-bottom: 10px;
+      color: $red;
+      font-size: rem(14);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    h4 {
+      margin-top: 30px;
+      margin-bottom: 10px;
+      color: $red;
+      font-size: rem(12);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    p {
+      font-family: $primary-font;
+      font-size: rem(18);
+      line-height: rem(22);
+      margin-top: 0;
+
+    }
+
+    img {
+      margin-top: 50px;
+      width: 100%;
+    }
+
+    a {
+      color: white;
+    }
+  }
+}
+
+/* CONTACTOS */
+.contactos {
+  z-index: 0;
+  width: 100%;
+
+  @include breakpoint(large) {
+    height: 100%;
+    height: calc(100vh - 60px);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+
+  .imagem {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+
+    @include breakpoint(large) {
+      opacity: 1;
+      width: 50%;
+      height: 100%;
+    }
+  }
+
+  .conteudo {
+    text-align: left;
+    padding: 20px 40px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    @include transform(translate(0, -50%));
+
+    @include breakpoint(large) {
+      overflow-y: auto;
+      top: 0;
+      left: 50%;
+      width: 50%;
+      height: 100%;
+      padding: 40px 60px;
+      @include transform(translate(0, 0));
+    }
+
+    h2 {
+      color: $red;
+      font-size: rem(16);
+      text-transform: uppercase;
+      letter-spacing: 10px;
+    }
+
+    h3 {
+      margin-top: 20px;
+      margin-bottom: 5px;
+      color: $red;
+      font-size: rem(12);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    p {
+      font-family: $secondary-font;
+      font-size: rem(18);
+      line-height: rem(28);
+      margin-top: 0;
+    }
+
+    a {
+      color: white;
+    }
+  }
+}
+
+.fancybox-overlay {
+  background: rgba(0, 0, 0, 0.6);
 }
